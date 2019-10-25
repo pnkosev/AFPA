@@ -49,6 +49,15 @@ public class FormPanel extends JPanel {
 		
 		// Set up Tax ID
 		taxLabel.setEnabled(false);
+		taxField.setEnabled(false);
+		
+		citizenCheckBox.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boolean isTicked = citizenCheckBox.isSelected();
+				taxLabel.setEnabled(isTicked);
+				taxField.setEnabled(isTicked);
+			}
+		});
 		//
 		
 		// Set up list box
@@ -70,7 +79,7 @@ public class FormPanel extends JPanel {
 		empModel.addElement("unemployed");
 		empBox.setModel(empModel);
 		empBox.setSelectedIndex(0);
-		//empBox.setEditable(true);                      // editable item
+		//empBox.setEditable(true);                      // editSable item
 		//
 		
 		okBtn.addActionListener(new ActionListener() {
@@ -79,8 +88,21 @@ public class FormPanel extends JPanel {
 				String occupation = occupationField.getText();
 				AgeCategory ageCat = ageList.getSelectedValue();
 				String empCat = String.valueOf(empBox.getSelectedItem());
+				boolean isUSCitizen = citizenCheckBox.isSelected();
+				String taxId = taxField.getText();
 				
-				FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId(), empCat);
+				// Undo all actions
+				nameField.setText("");
+				occupationField.setText("");
+				taxField.setText("");
+				citizenCheckBox.setSelected(false);
+				taxLabel.setEnabled(citizenCheckBox.isSelected());
+				taxField.setEnabled(citizenCheckBox.isSelected());
+				ageList.setSelectedIndex(1);
+				empBox.setSelectedIndex(0);
+				//
+				
+				FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId(), empCat, taxId, isUSCitizen);
 				
 				if (formListener != null) {
 					formListener.formEventOccurred(ev);
@@ -170,6 +192,40 @@ public class FormPanel extends JPanel {
 		gbc.anchor = GridBagConstraints.LINE_START;
 		gbc.insets = new Insets(0, 0, 0, 0);
 		add(empBox, gbc);
+		
+		// Next row
+		
+		gbc.gridy++;
+		
+		gbc.weightx = 1;
+		gbc.weighty = 0.2;
+		
+		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.LINE_END;
+		gbc.insets = new Insets(0, 0, 0, 5);
+		add(new JLabel("US Citizen: "), gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(citizenCheckBox, gbc);
+		
+		// Next row
+		
+		gbc.gridy++;
+		
+		gbc.weightx = 1;
+		gbc.weighty = 0.2;
+		
+		gbc.gridx = 0;
+		gbc.anchor = GridBagConstraints.LINE_END;
+		gbc.insets = new Insets(0, 0, 0, 5);
+		add(taxLabel, gbc);
+		
+		gbc.gridx = 1;
+		gbc.anchor = GridBagConstraints.LINE_START;
+		gbc.insets = new Insets(0, 0, 0, 0);
+		add(taxField, gbc);
 		
 		// Next row
 		
