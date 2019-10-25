@@ -1,0 +1,8 @@
+package tools;
+
+public class Tools {
+	
+	public static String greeting() {
+		return "yo";
+	}
+}

@@ -1,0 +1,10 @@
+package algoExercises;
+
+public class Pr01Factorielle {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

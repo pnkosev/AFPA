@@ -1,0 +1,18 @@
+package testCMD;
+import java.io.FileInputStream;
+import java.util.Map.Entry;
+import java.util.Properties;
+
+public class TestCMD {
+
+	public static void main(String[] args) {
+		String path = "C:\\Users\\CDA1\\Desktop\\Projets\\Java\\Java-AFPA\\algoExercises\\src\\testCMD\\properties.props";
+		Properties properties = new Properties();
+		properties.load(new FileInputStream(path));
+		for (Entry<Object, Object> k : properties.entrySet()) {
+			System.out.println(k.getKey());
+			System.out.println(k.getValue());
+		}
+	}
+
+}

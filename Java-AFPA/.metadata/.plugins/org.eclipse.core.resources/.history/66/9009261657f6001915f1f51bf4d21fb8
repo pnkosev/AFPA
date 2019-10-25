@@ -1,0 +1,17 @@
+import java.awt.BorderLayout;
+
+import javax.swing.JFrame;
+
+public class MainFrame extends JFrame {
+	super("Hello World");
+	
+	setLayout(new BorderLayout());
+	
+	toolBar = new Toolbar();
+	
+	add(toolBar, BorderLayout.NORTH);
+	
+	setSize(600, 500);
+	setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	setVisible(true);
+}

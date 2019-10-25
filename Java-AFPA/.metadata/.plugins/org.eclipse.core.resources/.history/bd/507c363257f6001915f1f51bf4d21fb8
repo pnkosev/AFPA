@@ -1,0 +1,18 @@
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
+public class Toolbar extends JPanel {
+	private JButton helloButton;
+	
+	public Toolbar() {
+		helloButton = new JButton("Hello");
+		
+		add(helloButton);
+		
+		helloButton.addActionListener(this);
+	}
+}

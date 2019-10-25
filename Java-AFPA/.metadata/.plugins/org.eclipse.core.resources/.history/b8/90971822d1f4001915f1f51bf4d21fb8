@@ -1,0 +1,97 @@
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.nio.file.FileSystem;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Properties;
+import java.util.Random;
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) throws IOException {
+		
+		// getting word from args
+//		String word = args[0];
+//		Pendu newGamePendu = new Pendu(word);
+//		
+//		newGamePendu.runGame();
+		
+		
+		
+		// getting word from file io
+//		String path = "C:\\Users\\CDA1\\Desktop\\Projets\\Java\\Java-AFPA\\Test\\src\\words.txt";
+//		
+//		List<String> words = new ArrayList<>();
+//		
+//		try (FileReader stream = new FileReader(path)) {
+//			Scanner reader = new Scanner(stream);
+//			
+//			while (reader.hasNextLine()) {
+//				String word = reader.nextLine();
+//				words.add(word);
+//			}
+//			
+//			Random rndNum = new Random();
+//			
+//			String randomWord = words.get(rndNum.nextInt(words.size()));
+//			
+//			Pendu newGamePendu = new Pendu(randomWord);
+//			
+//			newGamePendu.runGame();
+//
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block 
+//			e.printStackTrace();
+//		}
+		
+		// getting word from file nio
+//		String path = "C:\\Users\\CDA1\\Desktop\\Projets\\Java\\Java-AFPA\\Test\\src\\words.txt";
+//		
+//		List<String> words = Files.readAllLines(FileSystems.getDefault().getPath(path));
+//		
+//		Random rndNum = new Random();
+//		
+//		String randomWord = words.get(rndNum.nextInt(words.size()));
+//		
+//		Pendu newGamePendu = new Pendu(randomWord);
+//		
+//		newGamePendu.runGame();
+		
+		
+		// getting word from properties.props
+//		String path = "C:\\Users\\CDA1\\Desktop\\Projets\\Java\\Java-AFPA\\Test\\src\\properties.props";
+//		
+//		Properties properties = new Properties();
+//		
+//		try {
+//			properties.load(new FileInputStream(path));
+////			if (properties.keySet().contains("hiddenWord")) {
+////				String word = properties.getProperty("hiddenWord");
+////				Pendu newGamePendu = new Pendu(word);
+////				newGamePendu.runGame();
+////			}
+//			ArrayList<String> list = new ArrayList<String>();
+//			for (String word : properties.getProperty("hiddenWordList").split(", ")) {
+//				list.add(word);
+//			}
+//			Random rndNum = new Random();
+//			
+//			String randomWord = list.get(rndNum.nextInt(list.size()));
+//			Pendu newGamePendu = new Pendu(randomWord);
+//			newGamePendu.runGame();
+//			
+//		} catch (FileNotFoundException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+	}
+}

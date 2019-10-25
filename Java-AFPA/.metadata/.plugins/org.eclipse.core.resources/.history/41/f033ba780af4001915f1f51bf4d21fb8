@@ -1,0 +1,15 @@
+package testCMD;
+import java.util.Map.Entry;
+import java.util.Properties;
+
+public class TestCMD {
+
+	public static void main(String[] args) {
+		
+		Properties properties = new Properties();
+		for (Entry<Object, Object> k : properties.entrySet()) {
+			System.out.println(k.getKey());
+		}
+	}
+
+}

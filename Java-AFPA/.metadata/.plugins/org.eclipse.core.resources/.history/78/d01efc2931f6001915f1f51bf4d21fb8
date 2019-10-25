@@ -1,0 +1,16 @@
+import javax.swing.BorderFactory;
+import javax.swing.JPanel;
+
+public class Toolbar extends JPanel {
+	private String discoveredWord;
+	
+	public Toolbar(String word) {
+		this.discoveredWord = word;
+		
+		setBorder(BorderFactory.createTitledBorder(this.discoveredWord));
+	}
+
+	public void setDiscoveredWord(String discoveredWord) {
+		this.discoveredWord = discoveredWord;
+	}
+}

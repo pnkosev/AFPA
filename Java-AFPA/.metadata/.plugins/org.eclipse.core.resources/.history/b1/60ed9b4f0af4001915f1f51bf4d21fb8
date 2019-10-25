@@ -1,0 +1,12 @@
+package testCMD;
+import java.util.Properties;
+
+public class TestCMD {
+
+	public static void main(String[] args) {
+		
+		Properties properties = new Properties();
+		
+	}
+
+}

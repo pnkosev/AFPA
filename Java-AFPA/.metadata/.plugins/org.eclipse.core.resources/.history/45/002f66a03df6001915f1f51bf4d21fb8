@@ -1,0 +1,11 @@
+import javax.swing.JPanel;
+
+public class PenduPanel extends JPanel {
+	private String value;
+	
+	public PenduPanel(String value) {
+		this.value = value;
+	}
+	
+	
+}

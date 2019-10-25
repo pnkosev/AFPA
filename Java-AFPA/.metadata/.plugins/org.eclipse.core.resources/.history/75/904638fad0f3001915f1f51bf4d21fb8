@@ -1,0 +1,46 @@
+package pendu2;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Scanner scanner = new Scanner(System.in);
+		
+		System.out.println("Please enter a hidden word");
+		
+		String word = args[1];
+		Pendu pendu = new Pendu(word);
+		
+		int totalLifes = pendu.getLifes();
+		
+		boolean hasWon = pendu.isHiddenWordDiscovered();
+		int currentLifes = totalLifes;
+		
+		while (!hasWon && currentLifes-- > 0) {
+			System.out.println("Please enter a letter");
+			char letter = scanner.nextLine().charAt(0);
+			
+			int index = pendu.getIndexOfletter(letter);
+			
+			if (index >= 0 && pendu.isLetterAStar(index)) {
+				System.out.println("Super! Continuez.");
+				pendu.modifyDiscoveredWord(letter);
+				pendu.incrementLetteresGuessed();
+				hasWon = pendu.isHiddenWordDiscovered();
+			} else {
+				System.out.println("Dommage... Coninuez quand même");
+			}
+			
+			System.out.println(String.format("Vous en êtes à %s", pendu.getDiscoveredWordAsString()));
+		}
+		
+		if (hasWon) {
+			System.out.println(String.format("Bravo! Vous avez gagné en %d essais!", totalLifes - currentLifes));
+		} else {
+			System.out.println(String.format("Perdu! Le mot était %s", pendu.getHiddenWord()));
+			System.out.println(String.format("Vous avez trouvé %d bonnes lettres ; vous ferez mieux la prochaine fois!", pendu.getLettersGuessed()));
+		}
+	}
+
+}

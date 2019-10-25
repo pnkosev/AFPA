@@ -1,0 +1,6 @@
+package controller;
+import tools.*;
+
+public class MainController {
+	String greeting = Tools.greeting();
+}

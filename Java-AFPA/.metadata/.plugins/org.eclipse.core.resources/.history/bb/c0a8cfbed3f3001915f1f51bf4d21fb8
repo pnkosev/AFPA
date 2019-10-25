@@ -1,0 +1,97 @@
+package pendu;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
+public class Pendu {
+	// attributes initialization
+	private String hiddenWord;
+	private char[] discoveredWord;
+	private boolean hasWon = false;
+	private int nbOfTries = 0;
+	private int nbOfLettersGuessed = 0;
+	
+	// scanner initialization
+	Scanner scanner = new Scanner(System.in);
+
+	// constructor
+	public Pendu(String word) {this.hiddenWord = word;}
+
+	// method calling the other methods
+	public void runGame() {
+		typeHiddenWord();
+		initializeDiscoveredWord();
+		fillWithStars();
+		gameBody();
+		verifyIfWon();
+	}
+
+	// hidden word initialization
+	private void typeHiddenWord() {
+		System.out.println("Enter your hidden word:");
+		this.hiddenWord = scanner.nextLine();
+	}
+
+	// discovered word initialization
+	private void initializeDiscoveredWord() {
+		this.discoveredWord = new char[this.hiddenWord.length()];
+	}
+
+	// filling with stars the char[]
+	private void fillWithStars() {
+		Arrays.fill(this.discoveredWord, '*');
+	}
+
+	// game logic
+	private void gameBody() {
+		for (int i = 1; i <= this.hiddenWord.length() * 2; i++) {
+			System.out.println("Entrez une lettre :");
+
+			char character = scanner.nextLine().charAt(0);
+
+			int indexOfLetter = this.hiddenWord.indexOf(character);
+
+			if (indexOfLetter >= 0 && this.discoveredWord[indexOfLetter] == '*') {
+				System.out.println("Super! Continuez.");
+				modifyDiscoveredWord(character);
+				nbOfLettersGuessed++;
+			} else {
+				System.out.println("Dommage... Coninuez quand même");
+			}
+
+			System.out.println(String.format("Vous en êtes à %s", String.valueOf(this.discoveredWord)));
+
+			if (String.valueOf(this.discoveredWord).equals(this.hiddenWord)) {
+				this.hasWon = true;
+				this.nbOfTries = i;
+				break;
+			}
+		}
+	}
+
+	// verifying if won at the end of the game
+	private void verifyIfWon() {
+		if (this.hasWon) {
+			System.out.println(String.format("Bravo! Vous avez gagné en %d essais!", this.nbOfTries));
+		} else {
+			System.out.println(String.format("Perdu! Le mot était %s", this.hiddenWord));
+			System.out.println(String.format("Vous avez trouvé %d bonnes lettres ; vous ferez mieux la prochaine fois!", nbOfLettersGuessed));
+		}
+	}
+
+	// modifying the char[] (only if the hidden word contains the typed letter)
+	private void modifyDiscoveredWord(char character) {
+		for (int j = 0; j < this.hiddenWord.length(); j++) {
+			if (this.hiddenWord.charAt(j) == character) {
+				if (this.discoveredWord[j] == '*') {
+					this.discoveredWord[j] = character;
+				}
+			}
+		}
+	}
+
+	public static void main(String[] args) {
+		String word = args[1];
+		Pendu pendu = new Pendu();
+	}
+}

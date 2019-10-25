@@ -1,0 +1,10 @@
+package pendu;
+
+public class Main {
+
+	public static void main(String[] args) {
+		Pendu newGamePendu = new Pendu();
+		
+		newGamePendu.runGame();
+	}
+}

@@ -1,0 +1,14 @@
+package testCMD;
+import java.util.Properties;
+
+import sun.security.ssl.KAKeyDerivation;
+
+public class TestCMD {
+
+	public static void main(String[] args) {
+		
+		Properties properties = new Properties();
+		properties.keySet().forEach(k = > System.out.println(k));
+	}
+
+}

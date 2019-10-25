@@ -1,0 +1,20 @@
+import java.awt.Graphics;
+
+import javax.imageio.ImageIO;
+import javax.swing.JPanel;
+
+public class PenduPanel extends JPanel {
+	private String value;
+	
+	public PenduPanel() {
+		this.value = "0";
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		Image img = ImageIO.read("\\src\\test" + this.value + "\\.jpg");
+		
+		g.drawImage(img, 0, 0, this);
+	}
+}

@@ -1,0 +1,115 @@
+package penduMVC;
+
+public class ControllerPendu {
+	private ModelPendu model;
+	private ViewPendu view;
+		
+	public ControllerPendu() {}
+
+	public void newGame() {
+		this.view = new ViewPendu();
+		
+		String w = this.view.getHiddenWord();
+		
+		this.model = new ModelPendu(w);
+		
+		while (!hasWon() && hasLifesLeft()) {
+			char letter = this.view.getLetter();
+			
+			if (isLetterAlreadyUsed(letter)) {
+				view.printLetterAlreadyUsed(letter);
+				continue;
+			} else {
+				addLetterAsUsed(letter);
+				decrementLifes();
+				
+				if (hasLetter(letter) && isLetterAStar(letter)) {
+					view.printCongrats();
+					modifyDiscoveredWord(letter);
+					incrementLettersGuessed();
+				} else {
+					view.printSorry();
+				}
+			}
+			
+			view.printDiscoveredWord(getDiscoveredWord());
+		}
+		
+		if (hasWon()) {
+			int nbEssais = getNbOfTries();
+			view.printWon(nbEssais);
+		} else {
+			view.printLost(getHiddenWord(), getNbOfLettersGuessed());
+		}
+	}
+	
+	private boolean isLetterAlreadyUsed(char letter) {
+		return this.model.getLettersUsed().contains(letter);
+	}
+	
+	private void addLetterAsUsed(char letter) {
+		this.model.addUsedLetter(letter);
+	}
+	
+	private boolean hasWon() {
+		String hiddenWord = getHiddenWord();
+		String discoveredWord = getDiscoveredWord();
+		return hiddenWord.equals(discoveredWord);
+	}
+
+	private boolean hasLifesLeft() {
+		return this.model.getNbLifes() > 0;
+	}
+
+	private boolean hasLetter(char letter) {
+		return getIndexOfLetter(letter) > -1;
+	}
+
+	private boolean isLetterAStar(char letter) {
+		int index = getIndexOfLetter(letter);
+		return this.model.getDiscoveredWord()[index] == '*';
+	}
+	
+	private void modifyDiscoveredWord(char letter) {
+		String hiddenWord = this.model.getHiddenWord();
+		char[] discoveredWord = this.model.getDiscoveredWord();
+		
+		for (int j = 0; j < hiddenWord.length(); j++) {
+			if (hiddenWord.charAt(j) == letter) {
+				discoveredWord[j] = letter;
+			}
+		}
+		
+		this.model.setDiscoveredWord(discoveredWord);
+	}
+
+	private void incrementLettersGuessed() {
+		int currentLettersGuessed = this.model.getLettersGuessed();
+		this.model.setLettersGuessed(currentLettersGuessed + 1);
+	}
+		
+	private void decrementLifes() {
+		int currentLifes = this.model.getNbLifes();
+		this.model.setNbLifes(currentLifes - 1);
+	}
+	
+	private int getNbOfTries() {
+		return this.model.getHiddenWord().length() * 2 - this.model.getNbLifes();
+	}
+
+	private int getIndexOfLetter(char letter) {
+		return this.model.getHiddenWord().indexOf(letter);
+	}
+	
+	private String getHiddenWord() {
+		return this.model.getHiddenWord();
+	}
+
+	private int getNbOfLettersGuessed() {
+		return this.model.getLettersGuessed();
+	}
+
+	private String getDiscoveredWord() {
+		return String.valueOf(this.model.getDiscoveredWord());
+	}
+}

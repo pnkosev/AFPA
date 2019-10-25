@@ -1,0 +1,24 @@
+import java.util.EventObject;
+
+public class FormEvent extends EventObject {
+	
+	private String lettre;
+	
+	public FormEvent(Object source) {
+		super(source);
+	}
+	
+	public FormEvent(Object source, char lettre) {
+		super(source);
+		
+		this.lettre = lettre;
+	}
+	
+	public String getLettre() {
+		return this.lettre;
+	}
+
+	public void setLettre(String name) {
+		this.lettre = lettre;
+	}
+}
