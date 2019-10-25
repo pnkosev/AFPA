@@ -50,6 +50,7 @@ public class FormPanel extends JPanel {
 		ageList.setPreferredSize(new Dimension(110, 68));
 		ageList.setBorder(BorderFactory.createEtchedBorder());
 		ageList.setSelectedIndex(1);
+		//
 		
 		// Set up combo box
 		DefaultComboBoxModel<String> empModel = new DefaultComboBoxModel<>();
@@ -57,6 +58,9 @@ public class FormPanel extends JPanel {
 		empModel.addElement("self-employed");
 		empModel.addElement("unemployed");
 		empBox.setModel(empModel);
+		empBox.setSelectedIndex(0);
+		//empBox.setEditable(true);                      // editable item
+		//
 		
 		okBtn.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -65,9 +69,7 @@ public class FormPanel extends JPanel {
 				AgeCategory ageCat = ageList.getSelectedValue();
 				String empCat = String.valueOf(empBox.getSelectedItem());
 				
-				System.out.println(empCat);
-				
-				FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId());
+				FormEvent ev = new FormEvent(this, name, occupation, ageCat.getId(), empCat);
 				
 				if (formListener != null) {
 					formListener.formEventOccurred(ev);

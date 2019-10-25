@@ -82,4 +82,12 @@ public class FormPanel extends JPanel {
 	public void setFormListener(FormListener formListener) {
 		this.formListener = formListener;
 	}
+	
+	public void disableButton() {
+		this.okBtn.setEnabled(false);
+	}
+	
+	public void disableTextField() {
+		this.letterField.setEnabled(false);
+	}
 }

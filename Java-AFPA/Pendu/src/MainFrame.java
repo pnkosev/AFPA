@@ -41,9 +41,11 @@ public class MainFrame extends JFrame {
 				
 				if (hasWon()) {
 					redrawImg(12);
+					disableFields();
 				} else if (hasLost()) {
 					redrawImg(11);
 					updateHeaderMsg("The word was: " + getHiddenWord());
+					disableFields();
 				}
 			}
 		});
@@ -145,5 +147,10 @@ public class MainFrame extends JFrame {
 	private void redrawImg(int val) {
 		this.penduPanel.setValue(val);
 		this.penduPanel.repaint();
+	}
+	
+	private void disableFields() {
+		this.formPanel.disableButton();
+		this.formPanel.disableTextField();
 	}
 }
